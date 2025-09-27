@@ -80,10 +80,39 @@ export default {
             height: "0",
           },
         },
+        "glow-pulse": {
+          "0%, 100%": {
+            textShadow: "0 0 20px hsl(var(--glow-primary) / 0.6)",
+          },
+          "50%": {
+            textShadow: "0 0 30px hsl(var(--glow-secondary) / 0.8)",
+          },
+        },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
+        "slide-up": {
+          from: {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "slide-up": "slide-up 0.8s ease-out forwards",
       },
     },
   },
