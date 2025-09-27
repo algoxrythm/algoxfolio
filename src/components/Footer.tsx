@@ -8,7 +8,7 @@ const Footer = () => {
     {
       name: "LinkedIn",
       url: "#",
-      icon: "💼"
+      icon: "ll"
     },
     {
       name: "Twitter",
