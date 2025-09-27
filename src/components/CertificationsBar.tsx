@@ -86,64 +86,61 @@ const CertificationsBar = () => {
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 hero-text">
-            Certifications & Achievements
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Certifications Timeline
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Continuous learning and professional development in cutting-edge technologies
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+            Professional development journey through cutting-edge technologies
           </p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-          {certifications.map((cert, index) => (
-            <div
-              key={cert.id}
-              className={`certification-card group cursor-pointer transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{ 
-                transitionDelay: isVisible ? `${index * 100}ms` : '0ms' 
-              }}
-            >
-              {/* Icon */}
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                {cert.icon}
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-border transform -translate-y-1/2 hidden md:block" />
+          
+          {/* Timeline Items */}
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-4">
+            {certifications.map((cert, index) => (
+              <div
+                key={cert.id}
+                className={`timeline-item group relative transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ 
+                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms' 
+                }}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background z-10 group-hover:scale-125 transition-transform duration-300 hidden md:block" />
+                
+                {/* Content Card */}
+                <div className="bg-card border border-border rounded-lg p-4 max-w-xs hover:scale-105 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
+                  {/* Icon */}
+                  <div className="text-2xl mb-2 text-center">
+                    {cert.icon}
+                  </div>
+                  
+                  {/* Certification Name */}
+                  <h3 className="font-semibold text-base mb-1 text-center group-hover:text-primary transition-colors duration-300">
+                    {cert.name}
+                  </h3>
+                  
+                  {/* Issuer */}
+                  <p className="text-muted-foreground text-sm text-center mb-1">
+                    {cert.issuer}
+                  </p>
+                  
+                  {/* Year */}
+                  <p className="text-accent font-medium text-sm text-center">
+                    {cert.year}
+                  </p>
+                </div>
               </div>
-              
-              {/* Certification Name */}
-              <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors duration-300">
-                {cert.name}
-              </h3>
-              
-              {/* Issuer */}
-              <p className="text-muted-foreground text-sm mb-1">
-                {cert.issuer}
-              </p>
-              
-              {/* Year */}
-              <p className="text-accent font-medium text-sm">
-                {cert.year}
-              </p>
-              
-              {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-primary/50 transition-all duration-300 pointer-events-none" />
-            </div>
-          ))}
-        </div>
-
-        {/* Additional Info */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <p className="text-muted-foreground">
-            Always exploring new technologies and expanding expertise
-          </p>
-          <div className="inline-block mt-4 px-6 py-2 border border-primary/30 rounded-full text-sm hero-text">
-            View All Credentials →
+            ))}
           </div>
         </div>
       </div>

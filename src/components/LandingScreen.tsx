@@ -1,6 +1,57 @@
 import { useEffect, useState } from "react";
 import heroBackground from "@/assets/hero-background.jpg";
 
+const DynamicSkills = () => {
+  const skills = [
+    "React & TypeScript",
+    "Node.js & Express",
+    "Python & Django",
+    "Cloud Architecture",
+    "UI/UX Design",
+    "Database Design",
+    "DevOps & CI/CD",
+    "Mobile Development"
+  ];
+
+  const [currentSkill, setCurrentSkill] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentSkill((prev) => (prev + 1) % skills.length);
+        setIsAnimating(false);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [skills.length]);
+
+  return (
+    <div className="mb-6">
+      <div className="flex flex-wrap justify-center gap-4 mb-6">
+        {skills.slice(0, 3).map((skill, index) => (
+          <div
+            key={skill}
+            className={`skill-tag px-4 py-2 border border-primary/30 rounded-full text-sm transition-all duration-500 ${
+              index === currentSkill % 3 ? 'bg-primary/20 text-primary scale-110' : 'text-muted-foreground hover:text-primary hover:border-primary/50'
+            }`}
+          >
+            {skill}
+          </div>
+        ))}
+      </div>
+      
+      <div className={`text-2xl md:text-3xl font-semibold text-accent transition-all duration-500 ${
+        isAnimating ? 'opacity-0 transform translate-y-2' : 'opacity-100 transform translate-y-0'
+      }`}>
+        {skills[currentSkill]}
+      </div>
+    </div>
+  );
+};
+
 const LandingScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -28,25 +79,18 @@ const LandingScreen = () => {
       }`}>
         
         {/* Main Heading */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
           <span className="hero-text block mb-2">Creative</span>
-          <span className="hero-text block text-primary animate-glow-pulse">Developer</span>
+          <span className="hero-text block text-primary">Developer</span>
         </h1>
         
+        {/* Dynamic Skills Display */}
+        <DynamicSkills />
+        
         {/* Subtitle */}
-        <p className="hero-text text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 max-w-4xl mx-auto">
+        <p className="hero-text text-lg md:text-xl text-muted-foreground mt-8 max-w-3xl mx-auto">
           Crafting digital experiences with precision, passion, and innovation
         </p>
-        
-        {/* Additional Dynamic Text */}
-        <div className="space-y-4">
-          <div className="hero-text inline-block px-6 py-3 border border-primary/30 rounded-full text-lg">
-            Full-Stack Development
-          </div>
-          <div className="hero-text inline-block ml-4 px-6 py-3 border border-accent/30 rounded-full text-lg">
-            UI/UX Design
-          </div>
-        </div>
         
         {/* Floating Animation Element */}
         <div className="absolute top-20 right-20 w-32 h-32 border border-primary/20 rounded-full animate-float hidden lg:block" />

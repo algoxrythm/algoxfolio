@@ -112,4 +112,12 @@ All colors MUST be HSL.
     box-shadow: 0 8px 30px hsl(var(--glow-primary) / 0.2);
     border-color: hsl(var(--glow-primary));
   }
+
+  .skill-tag {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+
+  .timeline-item {
+    @apply relative;
+  }
 }
